@@ -1,12 +1,14 @@
+// index.js
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-require("dotenv").config();
-
-const authRoutes = require("./routes/auth");
-
+const authRoutes = require("./routes/auth"); // see below
 const app = express();
+
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); // IMPORTANT for POST body parsing
+
+app.get("/", (req, res) => res.send("Backend root OK"));
 
 app.use("/auth", authRoutes);
 
